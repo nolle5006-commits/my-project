@@ -1,10 +1,12 @@
 function displayPost(post) {
-    // TODO: POST 객체(예: {title, content, author} 를 HTML문자열로 )
-    // 예: "<h1>제목</h1> <p>내용</p> <p>작성자:작성자</p>"
+    return `<h1>${post.title}</h1><p>${post.content}</p><p>작성자:${post.author}</p>`;
 }
 
 function markAsImportant(post, isImportant) {
-    // TODO: isImportant가 true 이면 post.title에 "중요: " 추가
+    if(isImportant) {
+        return {...post, title: "중요: " + post.title}; //새로운 객체반환
+    }
+    return post;
 }
 
 //테스트
