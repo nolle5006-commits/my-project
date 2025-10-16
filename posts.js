@@ -38,4 +38,25 @@ async function fetchPosts() {
     }
 }
 
+async function createPost() {
+    const title = document.getElementById('title').value;
+    const content = document.getElementById('content').value;
+    const author = document.getElementById('author').value;
+
+    const data = {title, content, author};
+    try {
+        const response = await fetch('http://localhost:5001/posts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(data)
+        });
+        if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        fetchPosts(); //새로고침
+    }catch(error) {
+        console.error('게시물 생성실패: ', error);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', fetchPosts);

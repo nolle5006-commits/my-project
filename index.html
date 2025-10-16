@@ -6,11 +6,18 @@
     <style>
         body { font-family: Arial, sans-serif; }
         .post { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+        #postForm { margin: 10px 0; }
     </style>
 </head>
 <body>
     <h1>게시물 목록</h1>
     <div id="posts"></div>
+    <div id="postsForm">
+        <input type="text" id="title" placeholder="제목">
+        <input type="text" id="content" placeholder="내용">
+        <input type="text" id="author" placeholder="작성자">
+        <button onclick="createPost()">게시물생성</button>
+    </div>
     <script src="posts.js"></script>
 </body>
 </html>
