@@ -143,6 +143,12 @@ def get_posts():
         posts = json.load(f)
     return jsonify(posts), 200
 
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    print(f"404 발생 - 요청 경로: {request.path}")
+    return jsonify({"error": "Not Found"}), 404
+
 if __name__ == '__main__':
     init_db()
     init_json()

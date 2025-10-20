@@ -6,19 +6,42 @@
     <style>
         body { font-family: Arial, sans-serif; }
         .post { border: 1px solid #ccc; padding: 10px; margin: 10px 0; position: relative; }
-        #postForm { margin: 10px 0; }
-        .delete-btn { position: absolute; right: 10px; top: 10px; }
+        .delete-btn, .update-btn { margin: 5px; } <!-- 절대 위치 제거 -->
+        #loginForm { margin: 10px 0; }
+        #adminPanel { display: none; }
+        .admin-only { display: none; }
     </style>
 </head>
 <body>
-    <h1>게시물 목록</h1>
-    <div id="posts"></div>
-    <div id="postsForm">
-        <input type="text" id="title" placeholder="제목">
-        <input type="text" id="content" placeholder="내용">
-        <input type="text" id="author" placeholder="작성자">
-        <button onclick="createPost()">게시물생성</button>
+    <h1>커뮤니티 게시판</h1>
+    
+    <div id="loginForm">
+        <h3>Admin 로그인</h3>
+        <input type="text" id="username" placeholder="사용자명">
+        <input type="password" id="password" placeholder="비밀번호">
+        <button onclick="login()">로그인</button>
     </div>
+    
+    <div id="adminPanel">
+        <button onclick="logout()">로그아웃</button>
+        <div id="postForm">
+            <input type="text" id="title" placeholder="제목">
+            <input type="text" id="content" placeholder="내용">
+            <input type="text" id="author" placeholder="작성자">
+            <button onclick="createPost()">게시물 생성</button>
+        </div>
+        <div id="updateForm" style="display: none;">
+            <input type="hidden" id="updateId">
+            <input type="text" id="updateTitle" placeholder="수정 제목">
+            <input type="text" id="updateContent" placeholder="수정 내용">
+            <input type="text" id="updateAuthor" placeholder="수정 작성자">
+            <button onclick="updatePost()">게시물 수정</button>
+            <button onclick="cancelUpdate()">취소</button>
+        </div>
+    </div>
+    
+    <div id="posts"></div>
+    
     <script src="posts.js"></script>
 </body>
 </html>
