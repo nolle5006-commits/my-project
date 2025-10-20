@@ -3,6 +3,7 @@ function displayPost(post) {
     if (post.comment) {
         html += `<p>댓글: ${post.comment}</p>`;
     }
+    html += `<button class="delete-btn" onclick ="deletePost(${post.id})">삭제</button>`;
     return html;
 }
 
@@ -58,5 +59,21 @@ async function createPost() {
         console.error('게시물 생성실패: ', error);
     }
 }
+
+async function deletePost(id) {
+    try {
+        const response = await fetch(`http://localhost:5001/posts/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        });
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        fetchPosts(); //새로고침
+    } catch(error) {
+        console.error('게시물 삭제 실패: ', error);
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', fetchPosts);
